@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Button } from '../styled/Button'
 
 const StartGame = ({toggle}) => {
   return (
@@ -34,22 +35,4 @@ margin: 0 auto;
     }
 }
 `;
-
-const Button = styled.button`
-background-color: #000;
-color: #fff;
-padding: 10px 28px;
-border-radius: 5px;
-font-size: 16px;
-cursor: pointer;
-transition: 0.3s background ease-in;
-
-&:hover {
-    background-color: transparent;
-    color: #000;
-    border: 2px solid #000;
-    transition: 0.3s background ease-in;
-}
-`;
-
 export default StartGame

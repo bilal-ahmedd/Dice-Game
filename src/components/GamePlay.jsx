@@ -4,6 +4,8 @@ import NumberSelector from './NumberSelector'
 import styled from "styled-components";
 import RollDice from './RollDice';
 import { useState } from 'react';
+import { Button, OutlineButton } from '../styled/Button';
+import Rules from './Rules';
 
 const GamePlay = () => {
   
@@ -11,6 +13,7 @@ const GamePlay = () => {
   const[selectNumber, setSelectNumber] = useState();
   const [currentDice, setCurrentDice] = useState(1);
   const [error, setError] = useState("");
+  const [rules, setRules] = useState("");
 
   const generateNumber = (min, max)=> {
     return Math.floor(Math.random() * (max - min)   + min);
@@ -35,6 +38,11 @@ const GamePlay = () => {
       }
       setSelectNumber(undefined)
   }
+
+  const reset = ()=> {
+    setScore(0);
+  }
+
   return (
     <MainContainer>
         <div className='top_sec'>
@@ -42,6 +50,11 @@ const GamePlay = () => {
         <NumberSelector error={error} setError={setError} selectNumber={selectNumber} setSelectNumber={setSelectNumber} />
         </div>
         <RollDice currentDice={currentDice} rollDice={rollDice} />
+        <div className='btns'>
+          <OutlineButton onClick={reset}> Reset Score </OutlineButton>
+          <Button onClick={() => setRules((prev)=> !prev)} > Show Rules </Button>
+        { rules && <Rules/>}
+        </div>
     </MainContainer>
   )
 }
@@ -54,6 +67,14 @@ const MainContainer = styled.div`
         display: flex;
         justify-content: space-around;
         align-items: center;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px
     }
 
 `
